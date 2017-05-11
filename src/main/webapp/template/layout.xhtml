@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" type="text/css" 
+              href="#{facesContext.externalContext.requestContextPath}/assets/css/bootstrap.min.css" />
+        <script src="#{facesContext.externalContext.requestContextPath}/assets/js/jquery/jquery.min.js"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/assets/js/bootstrap/bootstrap.min.js"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/assets/js/modal-init.js"></script>
+    </h:head>
+    <style type="text/css">
+        .container-wrapper > .well {
+            margin-top: 15px;
+        }
+
+        .panel {
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .panel .table {
+            margin-top: 15px;
+        }
+
+        .table tbody tr td {
+            vertical-align: middle;
+        }
+
+    </style>
+    <h:body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 container-wrapper">
+                    <h3>Gerenciamento de Clientes - JSF</h3>
+                    <div class="btn-group">
+                        <h:link outcome="index" class="btn btn-primary">Cadastro</h:link>
+                        <h:link outcome="manager" class="btn btn-primary">Gerenciamento</h:link>
+                    </div>
+                    <ui:insert name="panel-content">
+
+                    </ui:insert>
+                    <!-- Modal Messages -->
+                    <h:panelGroup layout="block" rendered="${not empty facesContext.getMessageList('clientMsg')}">
+                        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" id="modalMsg">
+                            <div class="modal-dialog modal-sm" role="document">
+                                <h:messages class="list-unstyled" infoClass="alert alert-info" errorClass="alert alert-danger" layout="block"/>
+                            </div>	 
+                        </div>
+                    </h:panelGroup>
+                    <!-- Modal Messages -->
+                    <h:panelGroup layout="block" rendered="${facesContext.validationFailed}">
+                        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" id="modalMsg">
+                            <div class="modal-dialog modal-sm" role="document">
+                                <div class="alert alert-danger">
+                                    <h:messages class="list-unstyled" />
+                                </div>
+                            </div>	 
+                        </div>
+                    </h:panelGroup>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>

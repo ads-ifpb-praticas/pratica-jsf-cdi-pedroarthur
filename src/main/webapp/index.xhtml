@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="template/layout.xhtml">
+        <ui:define name="panel-content">
+            <div class="well">
+                <div class="alert alert-info">
+                    Preencha todos os campos abaixo e para finalizar o cadastro
+                    clique no botão "Cadastrar"
+                </div>
+                <div class="row">
+                    <h:form>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label" for="nome">Nome:</label>
+                                <h:inputText class="form-control" id="nome" 
+                                             a:placeholder="Josh"
+                                             value="#{clientBean.client.name}"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group #{!email.valid ? 'has-error' : 'none'}">
+                                <label class="control-label" for="email">E-mail:</label>
+                                <h:inputText class="form-control" 
+                                             id="email" 
+                                             a:placeholder="josh@gmail.com"
+                                             value="#{clientBean.client.email}"
+                                             binding="#{email}">
+                                    <f:validator validatorId="emailValidator" />
+                                </h:inputText>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group #{!cpf.valid ? 'has-error' : 'none'}">
+                                <label class="control-label" for="cpf">CPF:</label>
+                                <h:inputText class="form-control" 
+                                             id="cpf" 
+                                             a:placeholder="xxx.xxx.xxx-xx"
+                                             value="#{clientBean.client.cpf}"
+                                             binding="#{cpf}">
+                                    <f:validator validatorId="cpfValidator" />
+                                </h:inputText>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label" for="telefone">Telefone Fixo:</label>
+                                <h:inputText class="form-control" id="telefone" 
+                                             a:placeholder="9999-8888"
+                                             value="#{clientBean.client.phone}"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label" for="phone">Celular:</label>
+                                <h:inputText class="form-control" id="phone" 
+                                             a:placeholder="(77)99999-8888"
+                                             value="#{clientBean.client.cellphone}"/>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label" for="descricao">Observações:</label>
+                                <h:inputTextarea class="form-control" 
+                                                 id="descricao" rows="6"
+                                                 value="#{clientBean.client.observations}"/>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h:commandButton class="btn btn-primary pull-right"
+                                             value="Cadastrar"
+                                             action="#{clientBean.save()}"/>
+                        </div>
+                    </h:form>	
+                </div>
+            </div> 
+        </ui:define>
+
+    </ui:composition>
+</html>
+
